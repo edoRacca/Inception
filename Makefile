@@ -1,5 +1,5 @@
 
 up:
-	cd srcs && docker-compose up -d
+	cd srcs && sudo docker-compose up -d
 
 #docker-compose exec <container> bash
