@@ -1,4 +1,7 @@
 
+build:
+	cd srcs && sudo docker-compose build 
+
 up:
 	cd srcs && sudo docker-compose up -d
 
@@ -12,4 +15,5 @@ start:
 	cd srcs && sudo docker-compose start
 
 .PHONY: up down stop
-#docker-compose exec <container> bash
+
+#docker exec -it <container> bash
