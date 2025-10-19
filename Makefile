@@ -1,6 +1,6 @@
 
 build:
-	cd srcs && sudo docker-compose build 
+	cd srcs && sudo docker-compose build
 
 up:
 	cd srcs && sudo docker-compose up -d
@@ -14,6 +14,12 @@ stop:
 start:
 	cd srcs && sudo docker-compose start
 
-.PHONY: up down stop
+restart: stop build start
+
+# delete all unactive containers, volumes and networks
+delete:
+	sudo docker system prune
+
+.PHONY: up down stop start restart
 
 #docker exec -it <container> bash
