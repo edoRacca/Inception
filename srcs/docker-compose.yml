@@ -6,6 +6,5 @@ services:
     build: ./requirements/nginx
     container_name: nginx
     ports:
-      - "80:80" # HTTP
       - "443:443" # HTTPS
     restart: always

@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:12.12
 
 RUN apt update -y && apt upgrade -y && apt install bash -y && \
 	apt install nginx -y && rm -rf /var/lib/apt/lists/* && \
@@ -9,8 +9,6 @@ RUN apt update -y && apt upgrade -y && apt install bash -y && \
     -out /etc/nginx/ssl/server.crt \
     -subj "/C=IT/ST=Italy/L=Rome/O=LocalDev/OU=Dev/CN=localhost"
 
-EXPOSE 80 443
-
-COPY ./conf/default.conf /etc/nginx/conf.d/;
+COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]

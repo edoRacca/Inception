@@ -16,6 +16,8 @@ start:
 
 restart: stop build start
 
+rebuild: stop down build up
+
 # delete all unactive containers, volumes and networks
 delete:
 	sudo docker system prune
