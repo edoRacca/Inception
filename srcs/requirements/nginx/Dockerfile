@@ -9,6 +9,6 @@ RUN apt update -y && apt upgrade -y && apt install bash -y && \
     -out /etc/nginx/ssl/server.crt \
     -subj "/C=IT/ST=Italy/L=Rome/O=LocalDev/OU=Dev/CN=localhost"
 
-COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+COPY ./conf/default.conf /etc/nginx/conf.d/
 
 CMD ["nginx", "-g", "daemon off;"]
