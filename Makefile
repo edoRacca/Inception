@@ -1,6 +1,6 @@
 
 build:
-	cd srcs && sudo docker-compose build
+	cd srcs && sudo docker-compose build --no-cache
 
 up:
 	cd srcs && sudo docker-compose up -d
@@ -16,7 +16,7 @@ start:
 
 restart: stop build start
 
-rebuild: stop down build up 
+rebuild: stop down up 
 
 # delete all unactive containers, volumes and networks
 delete:
