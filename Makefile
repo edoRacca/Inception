@@ -14,9 +14,9 @@ stop:
 start:
 	cd srcs && sudo docker-compose start
 
-restart: stop build start
+restart: down up
 
-rebuild: stop down up 
+rebuild: stop down build up 
 
 # delete all unactive containers, volumes and networks
 delete:

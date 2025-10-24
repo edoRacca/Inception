@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.3'
 
 services:
   nginx:
@@ -7,6 +7,10 @@ services:
     container_name: nginx
     networks:
       - inception
+    volumes:
+      - wordpress_vol:/var/www/html
+    depends_on:
+      - wordpress
     ports:
       - "443:443" # HTTPS
     restart: always
@@ -16,8 +20,13 @@ services:
     container_name: wordpress
     networks:
       - inception
+    volumes:
+      - wordpress_vol:/var/www/html
     restart: always
 
 networks:
   inception:
     driver: bridge
+
+volumes:
+  wordpress_vol:
