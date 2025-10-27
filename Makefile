@@ -16,7 +16,7 @@ start:
 
 restart: down up
 
-rebuild: stop down build up 
+rebuild: down build up 
 
 # delete all unactive containers, volumes and networks
 delete:
