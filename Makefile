@@ -3,7 +3,7 @@ wordpress:
 	cd srcs && sudo docker-compose build wordpress
 
 build:
-	cd srcs && sudo docker-compose build --no-cache
+	cd srcs && sudo docker-compose build
 
 up:
 	cd srcs && sudo docker-compose up -d
