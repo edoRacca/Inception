@@ -18,6 +18,8 @@ services:
     image: wordpress:inception
     build: ./requirements/wordpress
     container_name: wordpress
+    env_file:
+      - .env
     networks:
       - inception
     volumes:

@@ -1,4 +1,7 @@
 
+wordpress:
+	cd srcs && sudo docker-compose build wordpress
+
 build:
 	cd srcs && sudo docker-compose build --no-cache
 
