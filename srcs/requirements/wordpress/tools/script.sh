@@ -9,33 +9,35 @@ elif [ -f /var/www/html/.env ]; then
 	export $(grep -v '^#' /var/www/html/.env | xargs)
 fi
 
-echo "📦 Avvio setup WordPress..."
-
 mkdir -p $WP_PATH
 cd $WP_PATH
 
-# Se WordPress non è presente, scaricalo
+# Se WordPress non è presente, lo scarico
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
-    echo "⬇️ Downloading WordPress..."
-    wp core download --allow-root --path=$WP_PATH
+    wp core download --path=$WP_PATH --allow-root
 else
-    echo "✔️ WordPress già presente"
+    echo "WordPress still present"
 fi
 
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
-	echo "DEBUG: Creazione file wp-config.php"
+	echo "creating wp-config.php configuration file"
 	wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD --dbhost=$DB_HOST --allow-root || \
-	echo "DEBUG: Maria DB not found"
+	echo "Maria DB not found"
 fi
 
 # install wordpress only if Maria DB is present
 if wp db check --allow-root >/dev/null 2>&1; then
 	if ! wp core is-installed --allow-root; then
 		echo "DEBUG: installazione WordPress"
-		wp core install --url=$SITE_URL --title="$SITE_TITLE" --admin-user=$ADMIN_USER --allow-root
+		wp core install --url=$SITE_URL \
+		--title="$SITE_TITLE" \
+		--admin_user=$ADMIN_USER \
+		--admin_password="$ADMIN_PASSWORD" \
+		--admin_email="$ADMIN_EMAIL" \
+		--allow-root
 	fi
 else
-	echo "DEBUG: installation failed, WordPress skipped"
+	echo "DEBUG: configuration file not found"
 fi
 
 # Imposta i permessi corretti
@@ -47,5 +49,4 @@ if [ -n "$PHP_FPM_CONF" ]; then
     sed -i 's|listen = .*|listen = 0.0.0.0:9000|' "$PHP_FPM_CONF"
 fi
 
-echo "🚀 Avvio di php-fpm..."
 exec php-fpm8.2 -F

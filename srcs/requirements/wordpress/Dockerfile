@@ -6,7 +6,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 RUN wp cli update
 
-
 COPY ./tools/script.sh /usr/local/bin/script.sh
 
 EXPOSE 9000

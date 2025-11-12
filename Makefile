@@ -1,21 +1,21 @@
 
 wordpress:
-	cd srcs && sudo docker-compose build wordpress
+	cd srcs && docker-compose build wordpress
 
 build:
-	cd srcs && sudo docker-compose build
+	cd srcs && docker-compose build
 
 up:
-	cd srcs && sudo docker-compose up -d
+	cd srcs && docker-compose up -d
 
 down:
-	cd srcs && sudo docker-compose down
+	cd srcs && docker-compose down
 
 stop:
-	cd srcs && sudo docker-compose stop 
+	cd srcs && docker-compose stop 
 
 start:
-	cd srcs && sudo docker-compose start
+	cd srcs && docker-compose start
 
 restart: down up
 
@@ -23,7 +23,7 @@ rebuild: down build up
 
 # delete all unactive containers, volumes and networks
 delete:
-	sudo docker system prune
+	docker system prune
 
 .PHONY: up down stop start restart
 

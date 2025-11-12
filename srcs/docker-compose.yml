@@ -24,7 +24,21 @@ services:
       - inception
     volumes:
       - wordpress_vol:/var/www/html
+    depends_on:
+      - mariadb
     restart: always
+  mariadb:
+    image: mariadb:inception
+    build: ./requirements/mariadb
+    container_name: mariadb
+    env_file:
+      - .env
+    networks:
+      - inception
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+    restart: always
+
 
 networks:
   inception:
@@ -32,3 +46,4 @@ networks:
 
 volumes:
   wordpress_vol:
+  mariadb_vol:
