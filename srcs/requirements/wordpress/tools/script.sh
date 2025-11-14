@@ -12,6 +12,13 @@ fi
 mkdir -p $WP_PATH
 cd $WP_PATH
 
+# echo "Waiting for MariaDB to be ready..."
+until mysqladmin ping -h "mariadb" --silent; do
+    echo "Waiting for mariadb ..."
+	sleep 1
+done
+echo "MariaDB is ready!"
+
 # Se WordPress non è presente, lo scarico
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
     wp core download --path=$WP_PATH --allow-root
@@ -25,6 +32,7 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
 	echo "Maria DB not found"
 fi
 
+
 # install wordpress only if Maria DB is present
 if wp db check --allow-root >/dev/null 2>&1; then
 	if ! wp core is-installed --allow-root; then
@@ -37,7 +45,7 @@ if wp db check --allow-root >/dev/null 2>&1; then
 		--allow-root
 	fi
 else
-	echo "DEBUG: configuration file not found"
+	echo "DEBUG: mariadb not found"
 fi
 
 # Imposta i permessi corretti
@@ -49,4 +57,11 @@ if [ -n "$PHP_FPM_CONF" ]; then
     sed -i 's|listen = .*|listen = 0.0.0.0:9000|' "$PHP_FPM_CONF"
 fi
 
-exec php-fpm8.2 -F
+# Trova il binario php-fpm disponibile
+PHP_FPM_BIN=$(command -v php-fpm8.2 || command -v php-fpm || true)
+if [ -z "$PHP_FPM_BIN" ]; then
+    echo "ERROR: php-fpm binary not found!"
+    exit 1
+fi
+
+exec $PHP_FPM_BIN -F
