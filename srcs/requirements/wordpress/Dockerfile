@@ -1,7 +1,7 @@
 FROM debian:12.12
 
 RUN apt update -y && apt upgrade -y
-RUN apt-get install php-cli php-fpm php-mysql curl wget mariadb-client -y
+RUN apt-get install php php-cli php-fpm php-mysql curl wget mariadb-client -y
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 RUN wp cli update
