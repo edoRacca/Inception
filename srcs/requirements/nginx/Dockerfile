@@ -9,7 +9,7 @@ RUN apt update -y && apt upgrade -y && apt install bash -y && \
     -newkey rsa:2048 \
     -keyout /etc/nginx/ssl/server.key \
     -out /etc/nginx/ssl/server.crt \
-    -subj "/C=IT/ST=Italy/L=Rome/O=LocalDev/OU=Dev/CN=localhost"
+    -subj "/C=IT/ST=Italy/L=Rome/O=LocalDev/OU=Dev/CN=edraccan.42.fr"
 
 
 COPY ./conf/default.conf /etc/nginx/conf.d/
