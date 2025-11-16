@@ -39,9 +39,9 @@ if wp db check --allow-root >/dev/null 2>&1; then
 		echo "DEBUG: installazione WordPress"
 		wp core install --url=$SITE_URL \
 		--title="$SITE_TITLE" \
-		--WP_ADMIN_USER=$WP_ADMIN_USER \
-		--WP_ADMIN_PASSWORD="$WP_ADMIN_PASSWORD" \
-		--WP_ADMIN_EMAIL="$WP_ADMIN_EMAIL" \
+		--admin_user="$WP_ADMIN_USER" \
+		--admin_password="$WP_ADMIN_PASSWORD" \
+		--admin_email="$WP_ADMIN_EMAIL" \
 		--allow-root
 	fi
 else
