@@ -9,10 +9,11 @@ elif [ -f /var/www/html/.env ]; then
 	export $(grep -v '^#' /var/www/html/.env | xargs)
 fi
 
+# WP_EXTRA="define(), "
+
 mkdir -p $WP_PATH
 cd $WP_PATH
 
-# echo "Waiting for MariaDB to be ready..."
 until mysqladmin ping -h "mariadb" --silent; do
     echo "Waiting for mariadb ..."
 	sleep 1
@@ -28,7 +29,11 @@ fi
 
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
 	echo "creating wp-config.php configuration file"
-	wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASSWORD --dbhost=$DB_HOST --allow-root || \
+	wp config create --dbname=$DB_NAME \
+	--dbuser=$DB_USER --dbpass=$DB_PASSWORD \
+	--dbhost=$DB_HOST \
+	# --extra-php="$WP_EXTRA" \
+	--allow-root || \
 	echo "Maria DB not found"
 fi
 
