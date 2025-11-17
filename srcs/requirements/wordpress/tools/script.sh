@@ -14,12 +14,6 @@ fi
 mkdir -p $WP_PATH
 cd $WP_PATH
 
-until mysqladmin ping -h "mariadb" --silent; do
-    echo "Waiting for mariadb ..."
-	sleep 1
-done
-echo "MariaDB is ready!"
-
 # Se WordPress non è presente, lo scarico
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
     wp core download --path=$WP_PATH --allow-root
@@ -32,7 +26,6 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
 	wp config create --dbname=$DB_NAME \
 	--dbuser=$DB_USER --dbpass=$DB_PASSWORD \
 	--dbhost=$DB_HOST \
-	# --extra-php="$WP_EXTRA" \
 	--allow-root || \
 	echo "Maria DB not found"
 fi

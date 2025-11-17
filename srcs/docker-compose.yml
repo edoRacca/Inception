@@ -25,7 +25,8 @@ services:
     volumes:
       - wordpress_vol:/var/www/html
     depends_on:
-      - mariadb
+      mariadb: 
+        condition: service_healthy #da implementare nel container di Mariadb e finchè il servizio non è "healty" wordpress attende
     restart: always
   mariadb:
     image: mariadb:inception
@@ -35,6 +36,12 @@ services:
       - .env
     networks:
       - inception
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "mariadb", "--silent"]
+      interval: 2s
+      timeout: 30s
+      retries: 5
+      start_period: 2s
     volumes:
       - mariadb_vol:/var/lib/mysql
     restart: always
