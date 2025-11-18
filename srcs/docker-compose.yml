@@ -38,10 +38,10 @@ services:
       - inception
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "mariadb", "--silent"]
-      interval: 2s
-      timeout: 30s
+      interval: 2s #docker execute test block every 2s
+      timeout: 30s #time for completing test block
       retries: 5
-      start_period: 2s
+      start_period: 5s #docker doesn't count failure during first x seconds
     volumes:
       - mariadb_vol:/var/lib/mysql
     restart: always
