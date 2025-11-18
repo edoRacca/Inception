@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aizen Sōsuke — Soul Society</title>
+<style>
+  :root{
+    --bg1:#0f172a;
+    --bg2:#021028;
+    --card:#0b1220;
+    --accent:#9f7aea;
+    --text:#e6eef8;
+    --muted:#9fb4d6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:Inter, "Helvetica Neue", Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(159,122,234,0.12), transparent),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+  }
+
+  .card{
+    width:100%;
+    max-width:920px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    border-radius:16px;
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:20px;
+    align-items:start;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+
+  /* avatar */
+  .avatar{
+    width:120px;
+    height:120px;
+    border-radius:12px;
+    background:linear-gradient(180deg,#0a0f1a,#081022);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow: inset 0 -20px 40px rgba(0,0,0,0.4);
+  }
+  .avatar svg{width:90px;height:90px;display:block;filter:drop-shadow(0 6px 8px rgba(0,0,0,0.45));}
+
+  /* content / speech */
+  .content{
+    position:relative;
+    padding-top:6px;
+  }
+
+  .name{
+    font-weight:700;
+    font-size:18px;
+    color:var(--accent);
+    margin:0 0 8px 0;
+    letter-spacing:0.2px;
+  }
+  .meta{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:14px;
+  }
+
+  .bubble{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    border-radius:14px;
+    padding:18px 18px;
+    color:var(--text);
+    font-size:18px;
+    line-height:1.4;
+    position:relative;
+    border:1px solid rgba(255,255,255,0.025);
+    box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+    max-width:100%;
+    white-space:pre-wrap;
+  }
+
+  /* little triangle for speech bubble */
+  .bubble::after{
+    content:"";
+    position:absolute;
+    left:-14px;
+    top:22px;
+    width:0;
+    height:0;
+    border:10px solid transparent;
+    border-right-color: rgba(255,255,255,0.02);
+    transform:translateX(-2px);
+  }
+  .bubble::before{
+    content:"";
+    position:absolute;
+    left:-12px;
+    top:22px;
+    width:0;height:0;
+    border:8px solid transparent;
+    border-right-color: var(--card);
+    transform:translateX(-2px);
+  }
+
+  .caption{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  @media (max-width:640px){
+    .card{grid-template-columns:88px 1fr;padding:18px}
+    .avatar{width:88px;height:88px}
+    .avatar svg{width:66px;height:66px}
+    .bubble{font-size:16px;padding:14px}
+  }
+</style>
+</head>
+<body>
+  <main class="card" role="main" aria-label="Aizen Sōsuke cita la Soul Society">
+    <figure class="avatar" aria-hidden="true">
+      <!-- stilizzazione semplice, non un'immagine reale del personaggio -->
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="avatar stilizzato">
+        <rect width="80" height="80" rx="12" fill="rgba(255,255,255,0.02)"/>
+        <g transform="translate(8,8)">
+          <!-- capelli stilizzati -->
+          <path d="M4 28 C10 6, 62 6, 68 28 C60 20, 20 20, 4 28 Z" fill="#0b1220"/>
+          <!-- volto -->
+          <ellipse cx="36" cy="40" rx="20" ry="22" fill="#0f172a"/>
+          <!-- occhiali stilizzati -->
+          <rect x="18" y="36" width="12" height="6" rx="1.8" fill="#bfcff0"/>
+          <rect x="36" y="36" width="12" height="6" rx="1.8" fill="#bfcff0"/>
+          <rect x="30" y="38" width="6" height="2" fill="#0f172a"/>
+          <!-- bocca semplice -->
+          <path d="M30 52 q6 4 12 0" stroke="#9fb4d6" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </figure>
+
+    <section class="content">
+      <h1 class="name">Aizen Sōsuke</h1>
+      <div class="meta">Citazione — Fan reference a Bleach</div>
+
+      <article class="bubble" role="article" aria-label="Citazione">
+        <!-- frase in italiano -->
+        «Benvenuto nella mia Soul Society»
+      </article>
+
+      <p class="caption">Pagina creata come fan-art; contenuto testuale riflette una citazione dal manga.</p>
+    </section>
+  </main>
+</body>
+</html>

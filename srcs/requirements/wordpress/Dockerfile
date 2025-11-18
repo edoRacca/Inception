@@ -7,6 +7,7 @@ RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 RUN wp cli update
 
 COPY ./tools/script.sh /usr/local/bin/script.sh
+COPY ./tools/homepage.html /usr/local/bin/homepage.html
 
 EXPOSE 9000
 
