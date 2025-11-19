@@ -26,5 +26,3 @@ delete:
 	docker system prune
 
 .PHONY: up down stop start restart
-
-#docker exec -it <container> bash
