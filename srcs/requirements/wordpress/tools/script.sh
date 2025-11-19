@@ -9,8 +9,6 @@ elif [ -f /var/www/html/.env ]; then
 	export $(grep -v '^#' /var/www/html/.env | xargs)
 fi
 
-# WP_EXTRA="define(), "
-
 mkdir -p $WP_PATH
 cd $WP_PATH
 
@@ -45,7 +43,7 @@ if wp db check --allow-root >/dev/null 2>&1; then
 		wp user create "$WP_USER" "$WP_USER_EMAIL" --user_pass="$WP_USER_PASSWORD" --allow-root
 	fi
 else
-	echo "wp core is not installed"
+	echo "wp core is installed"
 fi
 
 # Imposta i permessi corretti
