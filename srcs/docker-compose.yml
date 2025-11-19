@@ -25,7 +25,7 @@ services:
     volumes:
       - wordpress_vol:/var/www/html
     depends_on:
-      mariadb: 
+      mariadb:
         condition: service_healthy #da implementare nel container di Mariadb e finchè il servizio non è "healty" wordpress attende
     restart: always
   mariadb:
