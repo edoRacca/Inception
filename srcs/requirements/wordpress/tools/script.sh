@@ -36,7 +36,7 @@ if wp db check --allow-root >/dev/null 2>&1; then
 	if ! wp core is-installed --allow-root; then
 		echo "DEBUG: installazione WordPress"
 		wp core install \
-			--url=$SITE_URL \
+			--url="$SITE_URL" \
 			--title="$SITE_TITLE" \
 			--admin_user="$WP_ADMIN_USER" \
 			--locale="it_IT" \
