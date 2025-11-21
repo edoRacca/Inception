@@ -1,11 +1,8 @@
 
-VOLUMEDIR = $(HOME)/data
+wordpress:
+	cd srcs && docker-compose build wordpress
 
 build:
-	@if [ ! -d $(VOLUMEDIR) ]; then \
-		mkdir -p $(VOLUMEDIR)/wordpress $(VOLUMEDIR)/mariadb; \
-		chmod 777 -R $(VOLUMEDIR); \
-	fi
 	cd srcs && docker-compose build
 
 up:
